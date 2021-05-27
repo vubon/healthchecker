@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}
+    Service Status
+{% endblock %}
+{% block content %}
+    <section>
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2"> Service Status</h1>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Service Name</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Last Ping</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for service in services %}
+                            <tr>
+                                <td>{{ service.name }}</td>
+                                <td>{{ service.status }}</td>
+                                <td>{{ service.interval }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% block script %}
+        <script>
+            setTimeout(function () {
+                location.reload();
+            }, 30000);
+
+        </script>
+
+    {% endblock %}
+{% endblock %}
