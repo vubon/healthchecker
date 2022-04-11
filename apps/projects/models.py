@@ -8,6 +8,7 @@ from apps.cores.timestamp import Timestamp
 # Create your models here.
 
 class Project(Timestamp):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, unique=True)
     descriptions = models.TextField(max_length=500, null=True, blank=True)
 
@@ -24,16 +25,17 @@ class Service(Timestamp):
     STATUS = (
         ("checking", "Checking"),
         ("error", "Error"),
+        ("unavailable", "Unavailable"),
         ("ok", "OK")
     )
-
+    id = models.AutoField(primary_key=True)
     project = models.ForeignKey(Project, on_delete=models.SET_NULL, blank=True, null=True)
 
     name = models.CharField(max_length=100, unique=True)
     health_url = models.URLField(help_text='Health Check URL')
     interval = models.PositiveSmallIntegerField()
 
-    status = models.CharField(choices=STATUS, default="checking", max_length=10)
+    status = models.CharField(choices=STATUS, default="checking", max_length=20)
 
     def __str__(self):
         return f"Project: {self.project.name} - Service: {self.name}"
