@@ -1,0 +1,46 @@
+<!doctype html>
+{% load i18n static %}
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/ff89d85bbb.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
+
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+
+{% include 'navbar.html' %}
+<div class="container-fluid">
+    <div class="row">
+        {% include 'sidebar.html' %}
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+            {% include 'message.html' %}
+            <div class="container">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </main>
+    </div>
+</div>
+
+
+<!-- Optional JavaScript; choose one of the two! -->
+
+<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="{% static 'js/bootstrap.bundle.js' %}" crossorigin="anonymous"></script>
+<script src="{% static 'js/bootstrap.js' %}" crossorigin="anonymous"></script>
+<script src="{% static 'js/custom.js' %}" crossorigin="anonymous"></script>
+
+</body>
+</html>

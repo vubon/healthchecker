@@ -15,7 +15,6 @@ media
 *.db
 
 app_logs/*.log.*
-templates/*.html
 applibs/*.json
 applibs/firebase_test.py
 

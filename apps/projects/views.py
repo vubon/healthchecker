@@ -10,6 +10,36 @@ from django_celery_beat.models import PeriodicTask, IntervalSchedule
 from apps.projects.models import Project, Service
 
 
+class ProjectList(View):
+    template_name = 'project/index.html'
+
+    def get(self, request):
+        queryset = Project.objects.all().values("id", "name")
+        return render(request, template_name=self.template_name, context={"projects": queryset})
+
+
+class CreateProject(View):
+    template_name = 'project/create.html'
+
+    def get(self, request):
+        return render(request, template_name=self.template_name)
+
+    def post(self, request):
+        name = request.POST.get("name")
+        description = request.POST.get("description")
+        if not name:
+            messages.add_message(request, messages.WARNING, "Can't blank name or description")
+            return render(request, template_name=self.template_name)
+
+        try:
+            Project.objects.create(name=name, descriptions=description)
+            messages.add_message(request, messages.SUCCESS, "Project created")
+        except DatabaseError:
+            messages.add_message(request, messages.ERROR, "Database error")
+
+        return render(request, template_name=self.template_name)
+
+
 class CreateService(View):
     template_name = 'service/index.html'
 
@@ -42,9 +72,9 @@ class CreateService(View):
                 else:
                     periodic.enabled = False
                 periodic.save()
-            messages.success(request, "Service Created")
+            messages.add_message(request, messages.SUCCESS, "Service Created")
         except DatabaseError:
-            pass
+            messages.add_message(request, messages.ERROR, "Database error")
         return render(request, template_name=self.template_name, context={"projects": queryset})
 
 

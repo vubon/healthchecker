@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}
+    Create Project
+{% endblock %}
+{% block content %}
+    <div class="container project">
+        <div class="row">
+            <div class="col-md-12">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="name">Project Name</label>
+                            <input type="text" class="form-control" name="name" id="project_name"
+                                   placeholder="Project Name">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="description">Description</label>
+                            <textarea class="form-control" id="description" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
