@@ -111,3 +111,10 @@ body {
 .message {
     margin-top: 10px;
 }
+
+.badge-success{
+    background-color: #2e58ff;
+}
+.btn.btn-primary {
+    background-color: #2e58ff;
+}
