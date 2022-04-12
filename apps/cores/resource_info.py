@@ -4,7 +4,13 @@ import os
 import sys
 
 
-class HealthChecker:
+class Redis:
+    name: str
+    status: bool
+    config: dict
+
+
+class SystemHealthChecker:
 
     @staticmethod
     def get_os():
@@ -66,7 +72,15 @@ class HealthChecker:
                     pass
         return result
 
+    @staticmethod
+    def get_redis() -> Redis:
+        r = Redis()
+        r.name = "Redis"
+        r.status = True
+        r.config = {"port": 6974}
+        return r
+
 
 if __name__ == '__main__':
-    c = HealthChecker()
-    print(c.get_os())
+    c = SystemHealthChecker()
+    print(c.get_redis().status)

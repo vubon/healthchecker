@@ -15,18 +15,15 @@
                         <tr>
                             <th scope="col">Service Name</th>
                             <th scope="col">Status</th>
-                            <th scope="col">Last Ping</th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for service in services %}
                             <tr>
                                 <td>{{ service.name }}</td>
-                               <td> <span {% if service.status == "ok" %} class="badge badge-success"
-                               {% elif service.status == "checking" %} class="badge badge-info"
+                               <td> <span {% if service.status %} class="badge badge-success"
                                {% else %}class="badge badge-danger"
                                {% endif %} style="padding: 1em 1em; text-transform: capitalize;">{{ service.status }}</span> </td>
-                                <td>{{ service.interval }} Seconds ago</td>
                             </tr>
                         {% endfor %}
                         </tbody>
