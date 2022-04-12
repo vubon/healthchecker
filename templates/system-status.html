@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}
-    Service Status
+   System Status
 {% endblock %}
 {% block content %}
     <section>
@@ -16,7 +16,6 @@
                             <th scope="col">Service Name</th>
                             <th scope="col">Status</th>
                             <th scope="col">Last Ping</th>
-                            <th scope="col">Health checker running?</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -27,8 +26,7 @@
                                {% elif service.status == "checking" %} class="badge badge-info"
                                {% else %}class="badge badge-danger"
                                {% endif %} style="padding: 1em 1em; text-transform: capitalize;">{{ service.status }}</span> </td>
-                                <td>{{ service.interval }} Secs ago</td>
-                                <td>{% if service.enabled %} Yes {% else %} No {% endif %}</td>
+                                <td>{{ service.interval }} Seconds ago</td>
                             </tr>
                         {% endfor %}
                         </tbody>

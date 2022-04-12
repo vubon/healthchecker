@@ -17,7 +17,6 @@ def update_status(service_id: int, response: requests.Response) -> None:
 
 @shared_task()
 def fetch_data(*args, **kwargs):
-    print(args, kwargs)
     for key, value in kwargs.items():
         try:
             res = requests.get(url=value)
@@ -27,5 +26,6 @@ def fetch_data(*args, **kwargs):
             Service.objects.filter(pk=int(key)).update(status='unavailable')
             return False
         except requests.HTTPError as err:
+            Service.objects.filter(pk=int(key)).update(status='unavailable')
             print(err)
             return False

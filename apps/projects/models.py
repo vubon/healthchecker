@@ -34,6 +34,8 @@ class Service(Timestamp):
     name = models.CharField(max_length=100, unique=True)
     health_url = models.URLField(help_text='Health Check URL')
     interval = models.PositiveSmallIntegerField()
+    enabled = models.BooleanField(default=True, verbose_name='Enabled',
+                                  help_text='Set to False to disable the schedule')
 
     status = models.CharField(choices=STATUS, default="checking", max_length=20)
 

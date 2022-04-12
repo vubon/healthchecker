@@ -56,7 +56,7 @@ class CreateService(View):
                     period=IntervalSchedule.SECONDS
                 )
                 service = Service.objects.create(
-                    project=Project.objects.get(pk=1),
+                    project=Project.objects.get(pk=int(request.POST.get("project"))),
                     name=request.POST.get("service_name", "default_task"),
                     interval=request.POST.get("interval", 20),
                     health_url=request.POST.get("service_url")
@@ -71,6 +71,7 @@ class CreateService(View):
                     periodic.enabled = True
                 else:
                     periodic.enabled = False
+                    service.enabled = False
                 periodic.save()
             messages.add_message(request, messages.SUCCESS, "Service Created")
         except DatabaseError:
@@ -82,5 +83,5 @@ class ServiceStatus(View):
     template_name = "service/status.html"
 
     def get(self, request):
-        services = Service.objects.all().values("name", "status", "interval")
+        services = Service.objects.all().values("name", "status", "interval", "enabled")
         return render(request, self.template_name, {"services": services})

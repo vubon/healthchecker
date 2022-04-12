@@ -69,4 +69,4 @@ class HealthChecker:
 
 if __name__ == '__main__':
     c = HealthChecker()
-    print(c.get_process())
+    print(c.get_os())

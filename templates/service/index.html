@@ -13,15 +13,15 @@
             <div class="form-row">
                 <div class="form-group col-md-10">
                     <label for="project">Project</label>
-                    <select id="project" class="form-control">
+                    <select id="project" name="project" class="form-control">
                         <option selected>Choose...</option>
                         {% for project in projects %}
-                            <option name="project" value="{{ project.id }}"> {{ project.name }}</option>
+                            <option name="project" id="project"  value="{{ project.id }}"> {{ project.name }}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class="form-group col-md-2">
-                    <label for="interval">Interval</label>
+                    <label for="interval">Interval (In Second)</label>
                     <input type="text" class="form-control" name="interval" id="interval">
                 </div>
             </div>
