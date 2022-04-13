@@ -3,6 +3,10 @@ import json
 import os
 import sys
 
+import redis
+
+from healthchecker.settings import CELERY_BROKER_URL
+
 
 class Redis:
     name: str
@@ -76,9 +80,25 @@ class SystemHealthChecker:
     def get_redis() -> Redis:
         r = Redis()
         r.name = "Redis"
-        r.status = True
-        r.config = {"port": 6974}
+        conn_split = CELERY_BROKER_URL.split("//")[-1].split(":")
+        conn_redis = redis.Redis(host=conn_split[0], port=conn_split[1])
+        r.config = {"host": conn_split[0], "port": conn_split[1]}
+        try:
+            if conn_redis.ping():
+                r.status = True
+            else:
+                r.status = False
+        except redis.TimeoutError:
+            r.status = False
+        except redis.ConnectionError:
+            r.status = False
         return r
+
+    @staticmethod
+    def get_celery():
+        """
+        :return:
+        """
 
 
 if __name__ == '__main__':

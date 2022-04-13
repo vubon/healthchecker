@@ -72,6 +72,7 @@ class CreateService(View):
                 else:
                     periodic.enabled = False
                     service.enabled = False
+                service.save()
                 periodic.save()
             messages.add_message(request, messages.SUCCESS, "Service Created")
         except DatabaseError:
