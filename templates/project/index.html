@@ -19,15 +19,15 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th scope="col">ID</th>
                                 <th scope="col">Project Name</th>
+                                <th scope="col">Descriptions</th>
                             </tr>
                             </thead>
                             <tbody>
                             {% for project in  projects %}
                                 <tr>
-                                    <td>{{ project.id }}</td>
                                     <td>{{ project.name }}</td>
+                                    <td>{{ project.descriptions }}</td>
                                 </tr>
                             {% endfor %}
                             </tbody>

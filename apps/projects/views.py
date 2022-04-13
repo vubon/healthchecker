@@ -14,7 +14,7 @@ class ProjectList(View):
     template_name = 'project/index.html'
 
     def get(self, request):
-        queryset = Project.objects.all().values("id", "name")
+        queryset = Project.objects.all().values("id", "name", "descriptions")
         return render(request, template_name=self.template_name, context={"projects": queryset})
 
 
@@ -84,5 +84,5 @@ class ServiceStatus(View):
     template_name = "service/status.html"
 
     def get(self, request):
-        services = Service.objects.all().values("name", "status", "interval", "enabled")
+        services = Service.objects.all().values("name", "is_activate", "interval", "enabled")
         return render(request, self.template_name, {"services": services})

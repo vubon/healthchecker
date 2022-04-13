@@ -16,19 +16,21 @@
                             <th scope="col">Service Name</th>
                             <th scope="col">Status</th>
                             <th scope="col">Last Ping</th>
-                            <th scope="col">Health checker running?</th>
+                            <th scope="col">Running?</th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for service in services %}
                             <tr>
                                 <td>{{ service.name }}</td>
-                               <td> <span {% if service.status == "ok" %} class="badge badge-success"
-                               {% elif service.status == "checking" %} class="badge badge-info"
-                               {% else %}class="badge badge-danger"
-                               {% endif %} style="padding: 1em 1em; text-transform: capitalize;">{{ service.status }}</span> </td>
+                                <td> {% if service.is_activate %}
+                                    <i class="fa-solid indicator-green fa-circle-check"></i> {% else %}
+                                    <i class="fa-solid indicator-red fa-circle-check"></i> {% endif %}
+                                </td>
                                 <td>{{ service.interval }} Secs ago</td>
-                                <td>{% if service.enabled %} Yes {% else %} No {% endif %}</td>
+                                <td>{% if service.enabled %}
+                                    <i class="fa-solid indicator-green fa-circle-check"></i> {% else %}
+                                    <i class="fa-solid indicator-red fa-circle-check"></i> {% endif %}</td>
                             </tr>
                         {% endfor %}
                         </tbody>

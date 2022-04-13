@@ -10,9 +10,8 @@ def update_status(service_id: int, response: requests.Response) -> None:
     :param response:
     :return:
     """
-    print(service_id, response)
     if 200 <= response.status_code <= 299:
-        Service.objects.filter(pk=service_id).update(status='ok')
+        Service.objects.filter(pk=service_id).update(is_activate=True)
 
 
 @shared_task()
@@ -23,9 +22,7 @@ def fetch_data(*args, **kwargs):
             update_status(service_id=int(key), response=res)
         except (requests.ConnectionError, requests.Timeout) as err:
             print(err)
-            Service.objects.filter(pk=int(key)).update(status='unavailable')
             return False
         except requests.HTTPError as err:
-            Service.objects.filter(pk=int(key)).update(status='unavailable')
             print(err)
             return False

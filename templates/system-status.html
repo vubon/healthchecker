@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}
-   System Status
+    System Status
 {% endblock %}
 {% block content %}
     <section>
@@ -21,9 +21,11 @@
                         {% for service in services %}
                             <tr>
                                 <td>{{ service.name }}</td>
-                               <td> <span {% if service.status %} class="badge badge-success"
-                               {% else %}class="badge badge-danger"
-                               {% endif %} style="padding: 1em 1em; text-transform: capitalize;">{{ service.status }}</span> </td>
+                                <td>
+                                    {% if service.status %}
+                                        <i class="fa-solid indicator-green fa-circle-check"> </i> {% else %}
+                                        <i class="fa-solid indicator-red fa-circle-check"> </i> {% endif %}
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>

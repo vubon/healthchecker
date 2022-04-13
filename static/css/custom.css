@@ -122,3 +122,11 @@ body {
 li.nav-item{
     border-bottom: 1px solid #e9e9e9;
 }
+.indicator-green{
+    color: #2e58ff;
+    font-size: 18px;
+}
+.indicator-red{
+    color: red;
+    font-size: 18px;
+}

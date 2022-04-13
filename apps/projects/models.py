@@ -22,12 +22,6 @@ class Project(Timestamp):
 
 
 class Service(Timestamp):
-    STATUS = (
-        ("checking", "Checking"),
-        ("error", "Error"),
-        ("unavailable", "Unavailable"),
-        ("ok", "OK")
-    )
     id = models.AutoField(primary_key=True)
     project = models.ForeignKey(Project, on_delete=models.SET_NULL, blank=True, null=True)
 
@@ -36,8 +30,7 @@ class Service(Timestamp):
     interval = models.PositiveSmallIntegerField()
     enabled = models.BooleanField(default=True, verbose_name='Enabled',
                                   help_text='Set to False to disable the schedule')
-
-    status = models.CharField(choices=STATUS, default="checking", max_length=20)
+    is_activate = models.BooleanField(default=False, help_text="Service status")
 
     def __str__(self):
         return f"Project: {self.project.name} - Service: {self.name}"
