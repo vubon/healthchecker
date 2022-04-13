@@ -25,7 +25,7 @@ class Service(Timestamp):
     id = models.AutoField(primary_key=True)
     project = models.ForeignKey(Project, on_delete=models.SET_NULL, blank=True, null=True)
 
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=100, unique=True, db_index=True)
     health_url = models.URLField(help_text='Health Check URL')
     interval = models.PositiveSmallIntegerField()
     enabled = models.BooleanField(default=True, verbose_name='Enabled',
@@ -38,3 +38,9 @@ class Service(Timestamp):
     class Meta:
         verbose_name = "Service"
         verbose_name_plural = "Services"
+
+
+class History(Timestamp):
+    id = models.AutoField(primary_key=True)
+    service = models.ForeignKey(Service, on_delete=models.CASCADE)
+
