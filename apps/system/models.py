@@ -5,9 +5,10 @@ from apps.cores.timestamp import Timestamp
 
 
 class System(Timestamp):
-    name = models.CharField(max_length=100)
-    status = models.BooleanField(default=True)
-    config = models.JSONField()
+    name = models.CharField(max_length=100, db_index=True, unique=True)
+    status = models.BooleanField(default=False)
+    config = models.JSONField(null=True, blank=True)
+    service_name = models.CharField(max_length=100, blank=True, null=True, db_index=True)
 
     class Meta:
         verbose_name = "System"

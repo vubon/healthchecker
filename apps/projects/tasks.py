@@ -22,7 +22,9 @@ def fetch_data(*args, **kwargs):
             update_status(service_id=int(key), response=res)
         except (requests.ConnectionError, requests.Timeout) as err:
             print(err)
+            Service.objects.filter(pk=int(key)).update(is_activate=False)
             return False
         except requests.HTTPError as err:
             print(err)
+            Service.objects.filter(pk=int(key)).update(is_activate=False)
             return False

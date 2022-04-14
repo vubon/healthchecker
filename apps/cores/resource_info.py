@@ -6,6 +6,7 @@ import sys
 import redis
 
 from healthchecker.settings import CELERY_BROKER_URL
+from healthchecker.celery import app
 
 
 class Redis:
@@ -99,8 +100,12 @@ class SystemHealthChecker:
         """
         :return:
         """
+        workers = app.control.ping()
+        if workers:
+            return [k for item in app.control.ping() for k, v in item.items()]
+        return workers
 
 
 if __name__ == '__main__':
     c = SystemHealthChecker()
-    print(c.get_redis().status)
+    print(c.get_celery())
