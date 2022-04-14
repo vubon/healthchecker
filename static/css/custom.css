@@ -73,7 +73,7 @@ li.nav-item.active {
     background-color: #2e58ff;
 }
 
-li.nav-item.active a{
+li.nav-item.active a {
     color: #ffffff;
 }
 
@@ -115,6 +115,7 @@ li.nav-item.active a{
 .project {
     margin-top: 10px;
 }
+
 .create-project {
     margin-bottom: 15px;
 }
@@ -154,4 +155,15 @@ li.nav-item {
     background-color: #2e58ff;
     color: #ffffff;
     border: 1px solid #2e58ff;
+}
+.btn-outline-primary {
+    color: #2e58ff;
+    border-color: #2e58ff;
+}
+.btn-outline-primary:hover {
+    background-color: #2e58ff;
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active, .show > .btn-outline-primary.dropdown-toggle {
+    background-color: #2e58ff;
 }

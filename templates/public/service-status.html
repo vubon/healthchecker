@@ -1,0 +1,84 @@
+{% extends 'public/base.html' %}
+{% load i18n static %}
+{% block title %}
+    Service Status
+{% endblock %}
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">Welcome to Health Checker</h1>
+                <p class="lead">You can check your microservice health here very easy way!</p>
+                <a class="lead btn btn-outline-primary" href="{% url 'login' %}">Login</a>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            Services Status
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            {% for service in services %}
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <div class="col-md-10">
+                                                    {{ service.name }}
+                                                </div>
+                                                <div class="col-md-2">
+                                                    {% if service.is_activate %}
+                                                        <i class="fa-solid indicator-green fa-circle-check"></i> {% else %}
+                                                        <i class="fa-solid indicator-red fa-circle-check"></i> {% endif %}
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <p>Last Ping?</p>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    {{ service.interval }} Sec ago
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <div class="col-md-10">
+                                                    Running?
+                                                </div>
+                                                <div class="col-md-2">
+                                                    {% if service.enabled %}
+                                                        <i class="fa-solid indicator-green fa-circle-check"></i> {% else %}
+                                                        <i class="fa-solid indicator-red fa-circle-check"></i> {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    {#    {% block script %}#}
+    {#        <script>#}
+    {#            setTimeout(function () {#}
+    {#                location.reload();#}
+    {#            }, 30000);#}
+    {##}
+    {#        </script>#}
+    {##}
+    {#    {% endblock %}#}
+{% endblock %}

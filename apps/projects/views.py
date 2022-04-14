@@ -1,7 +1,9 @@
 import json
 
+from django.contrib.auth.decorators import login_required
 from django.db import DatabaseError, transaction
 from django.shortcuts import render
+from django.utils.decorators import method_decorator
 from django.views import View
 from django.contrib import messages
 
@@ -13,6 +15,7 @@ from apps.projects.models import Project, Service
 class ProjectList(View):
     template_name = 'project/index.html'
 
+    @method_decorator(login_required)
     def get(self, request):
         queryset = Project.objects.all().values("id", "name", "descriptions")
         return render(request, template_name=self.template_name, context={"projects": queryset})
@@ -21,6 +24,7 @@ class ProjectList(View):
 class ProjectService(View):
     template_name = 'service/status.html'
 
+    @method_decorator(login_required)
     def get(self, request, pk):
         services = Service.objects.filter(project=int(pk)).values("name", "is_activate", "interval", "enabled")
         return render(request, self.template_name, {"services": services})
@@ -29,9 +33,11 @@ class ProjectService(View):
 class CreateProject(View):
     template_name = 'project/create.html'
 
+    @method_decorator(login_required)
     def get(self, request):
         return render(request, template_name=self.template_name)
 
+    @method_decorator(login_required)
     def post(self, request):
         name = request.POST.get("name")
         description = request.POST.get("description")
@@ -51,6 +57,7 @@ class CreateProject(View):
 class CreateService(View):
     template_name = 'service/index.html'
 
+    @method_decorator(login_required)
     def get(self, request):
         queryset = Project.objects.all().values("id", "name")
         return render(request, template_name=self.template_name, context={"projects": queryset})
@@ -100,6 +107,7 @@ class CreateService(View):
 class ServiceStatus(View):
     template_name = "service/status.html"
 
+    @method_decorator(login_required)
     def get(self, request):
         services = Service.objects.all().values("name", "is_activate", "interval", "enabled")
         return render(request, self.template_name, {"services": services})

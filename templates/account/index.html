@@ -1,60 +1,43 @@
-<!doctype html>
+{% extends 'public/base.html' %}
 {% load i18n static %}
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Vubon Roy">
-    <title>Health Checker | Login </title>
+{% block title %}
+    Create Project
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form-signin" method="POST">
+                    {% csrf_token %}
+                    <div class="text-center mb-4">
+                        <img class="mb-4" src="{% static 'img/health-checker.png' %}" alt="logo" width="300"
+                             height="200">
+                        <h1 class="h3 mb-3 font-weight-normal">Login In</h1>
+                    </div>
+                    {% include 'message.html' %}
+                    <div class="form-label-group">
+                        <input type="text" id="username" name="username" class="form-control" placeholder="Username"
+                               required
+                               autofocus>
+                        <label for="username">Username<span class="indicator-red">*</span></label>
+                    </div>
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-    <!-- Login CSS -->
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+                    <div class="form-label-group">
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Password"
+                               required>
+                        <label for="password">Password<span class="indicator-red">*</span></label>
+                    </div>
 
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    </style>
-</head>
-<body>
-<form class="form-signin">
-    {% csrf_token %}
-    <div class="text-center mb-4">
-        <img class="mb-4" src="{% static 'img/health-checker.png' %}" alt="" width="300" height="200">
-        <h1 class="h3 mb-3 font-weight-normal">Login In</h1>
+                    <div class="checkbox mb-3">
+                        <label>
+                            <input type="checkbox" value="remember-me"> Remember me
+                        </label>
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                    <p class="mt-5 mb-3 text-muted text-center">&copy; 2022 - 2022</p>
+                </form>
+            </div>
+        </div>
     </div>
+{% endblock %}
 
-    <div class="form-label-group">
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputEmail">Email address <span class="indicator-red">*</span></label>
-    </div>
-
-    <div class="form-label-group">
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <label for="inputPassword">Password <span class="indicator-red">*</span></label>
-    </div>
-
-    <div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" value="remember-me"> Remember me
-        </label>
-    </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted text-center">&copy; 2022 - 2022</p>
-</form>
-</body>
-</html>

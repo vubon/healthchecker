@@ -1,25 +1,8 @@
-{#<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">#}
-{#    <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Health Checker</a>#}
-{#    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse"#}
-{#            data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">#}
-{#        <span class="navbar-toggler-icon"></span>#}
-{#    </button>#}
-{#    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">#}
-{#    <ul class="navbar-nav px-3">#}
-{#        <li class="nav-item text-nowrap">#}
-{#            <a class="nav-link" href="#">Sign out</a>#}
-{#        </li>#}
-{#    </ul>#}
-{#</nav>#}
+{% load i18n static %}
 
 
 <div class="d-flex flex-column sticky-top flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom">
-    <h5 class="my-0 mr-md-auto font-weight-normal">Health Checker</h5>
-{#    <nav class="my-2 my-md-0 mr-md-3">#}
-{#        <a class="p-2 text-dark" href="#">Features</a>#}
-{#        <a class="p-2 text-dark" href="#">Enterprise</a>#}
-{#        <a class="p-2 text-dark" href="#">Support</a>#}
-{#        <a class="p-2 text-dark" href="#">Pricing</a>#}
-{#    </nav>#}
-    <a class="btn btn-outline-primary" href="#">Logout</a>
+    <h5 class="my-0 mr-md-auto font-weight-normal"><img src="{% static 'img/health-checker.png' %}" width="100"
+                                                        height="50" alt="Health Checker"></h5>
+    <a class="btn btn-outline-primary" href="{% url 'logout' %}">Logout</a>
 </div>

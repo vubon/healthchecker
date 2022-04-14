@@ -1,0 +1,28 @@
+<!doctype html>
+{% load i18n static %}
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <script src="https://kit.fontawesome.com/ff89d85bbb.js"></script>
+    <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
+    <!-- Login CSS -->
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+{% block content %}
+
+{% endblock %}
+
+<!-- Optional JavaScript; choose one of the two! -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="{% static 'js/bootstrap.bundle.js' %}" crossorigin="anonymous"></script>
+<script src="{% static 'js/bootstrap.js' %}" crossorigin="anonymous"></script>
+</body>
+</html>
