@@ -35,7 +35,7 @@ class CreateProject(View):
     def post(self, request):
         name = request.POST.get("name")
         description = request.POST.get("description")
-        if not name:
+        if not (name and description):
             messages.add_message(request, messages.WARNING, "Can't blank name or description")
             return render(request, template_name=self.template_name)
 
@@ -58,22 +58,31 @@ class CreateService(View):
     def post(self, request):
         queryset = Project.objects.all().values("id", "name")
         try:
+            interval = request.POST.get("interval")
+            project = request.POST.get("project")
+            service_name = request.POST.get("service_name")
+            health_url = request.POST.get("service_url")
+
+            if not (interval and project and service_name and health_url):
+                messages.add_message(request, messages.WARNING, f"Can't blank any field value")
+                return render(request, template_name=self.template_name, context={"projects": queryset})
+
             with transaction.atomic():
                 schedule, created = IntervalSchedule.objects.get_or_create(
-                    every=int(request.POST.get("interval", 10)),
+                    every=int(interval),
                     period=IntervalSchedule.SECONDS
                 )
                 service = Service.objects.create(
-                    project=Project.objects.get(pk=int(request.POST.get("project"))),
-                    name=request.POST.get("service_name", "default_task"),
-                    interval=request.POST.get("interval", 20),
-                    health_url=request.POST.get("service_url")
+                    project=Project.objects.get(pk=int(project)),
+                    name=service_name,
+                    interval=interval,
+                    health_url=health_url
                 )
                 periodic = PeriodicTask.objects.create(
                     interval=schedule,  # we created this above.
-                    name=request.POST.get("service_name", "default_task"),
-                    task='apps.projects.tasks.fetch_data',
-                    kwargs=json.dumps({f'{service.pk}': request.POST.get("service_url")})
+                    name=service_name,
+                    task='apps.projects.tasks.service_health_checker',
+                    kwargs=json.dumps({f'{service.pk}': health_url})
                 )
                 if request.POST.get("enable") == "on":
                     periodic.enabled = True
