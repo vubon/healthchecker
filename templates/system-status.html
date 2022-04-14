@@ -4,32 +4,30 @@
 {% endblock %}
 {% block content %}
     <section>
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2"> System Status</h1>
-        </div>
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th scope="col">Service Name</th>
-                            <th scope="col">Status</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for service in services %}
-                            <tr>
-                                <td>{{ service.name }}</td>
-                                <td>
-                                    {% if service.status %}
-                                        <i class="fa-solid indicator-green fa-circle-check"> </i> {% else %}
-                                        <i class="fa-solid indicator-red fa-circle-check"> </i> {% endif %}
-                                </td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            System Services Status
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            {% for service in services %}
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            {{ service.name }}
+                                        </div>
+                                        <div class="col-md-2">
+                                            {% if service.status %}
+                                                <i class="fa-solid indicator-green fa-circle-check"></i> {% else %}
+                                                <i class="fa-solid indicator-red fa-circle-check"></i> {% endif %}
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

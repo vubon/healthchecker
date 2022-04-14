@@ -107,6 +107,9 @@ body {
 .project {
     margin-top: 10px;
 }
+.create-project {
+    margin-bottom: 15px;
+}
 
 .message {
     margin-top: 10px;
@@ -133,4 +136,14 @@ li.nav-item {
 .indicator-red {
     color: red;
     font-size: 18px;
+}
+
+.card {
+    border: 1px solid #2e58ff;
+}
+
+.card-header {
+    background-color: #2e58ff;
+    color: #ffffff;
+    border: 1px solid #2e58ff;
 }
