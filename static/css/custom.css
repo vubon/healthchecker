@@ -69,6 +69,14 @@ body {
     text-transform: uppercase;
 }
 
+li.nav-item.active {
+    background-color: #2e58ff;
+}
+
+li.nav-item.active a{
+    color: #ffffff;
+}
+
 /*
  * Navbar
  */
