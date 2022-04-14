@@ -15,7 +15,7 @@ def update_status(service_id: int, response: requests.Response) -> None:
 
 
 @shared_task()
-def fetch_data(*args, **kwargs):
+def service_health_checker(*args, **kwargs):
     for key, value in kwargs.items():
         try:
             res = requests.get(url=value)
