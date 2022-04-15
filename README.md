@@ -1,5 +1,5 @@
-# Micro Service Health Checker
-
+# Microservice Health Checker Project
+Using the project you can check your microservice health. More interesting feature are coming soon.
 ## Prerequisites
 - Python
 - Django
