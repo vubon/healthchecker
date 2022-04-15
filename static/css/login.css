@@ -143,3 +143,7 @@ body {
 .btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active, .show > .btn-outline-primary.dropdown-toggle {
     background-color: #2e58ff;
 }
+
+.card{
+    margin-bottom: 50px;
+}
