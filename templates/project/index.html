@@ -16,6 +16,7 @@
                                 Project List
                             </div>
                             <ul class="list-group list-group-flush">
+                               <li class="list-group-item"> {% if not projects %} No Project Available {% endif %}</li>
                                 {% for project in  projects %}
                                     <li class="list-group-item">
                                         <div class="row">

@@ -2,7 +2,7 @@
 
 
 <div class="d-flex flex-column sticky-top flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom">
-    <h5 class="my-0 mr-md-auto font-weight-normal"><img src="{% static 'img/health-checker.png' %}" width="100"
-                                                        height="50" alt="Health Checker"></h5>
+    <h5 class="my-0 mr-md-auto font-weight-normal"> <a href="{% url 'project' %}"><img src="{% static 'img/health-checker.png' %}" width="100"
+                                                        height="50" alt="Health Checker"></a> </h5>
     <a class="btn btn-outline-primary" href="{% url 'logout' %}">Logout</a>
 </div>

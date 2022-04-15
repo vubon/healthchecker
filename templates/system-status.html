@@ -12,6 +12,7 @@
                             System Services Status
                         </div>
                         <ul class="list-group list-group-flush">
+                            <li class="list-group-item"> {% if not services %} Please enable Celery {% endif %}</li>
                             {% for service in services %}
                                 <li class="list-group-item">
                                     <div class="row">
