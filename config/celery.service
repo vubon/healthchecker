@@ -1,0 +1,27 @@
+[Unit]
+Description=Celery Service
+After=network.target
+
+[Service]
+Type=forking
+User=ubuntu
+Group=www-data
+
+WorkingDirectory=<Your Project DIR>
+
+PIDFile=<Your Project DIR>/celery-single.pid
+
+ExecStart=<Your Celery Location>/celery multi start single-worker -n worker1@prod -A conf.celery:app \
+--pidfile=<Your Project DIR>/celery-single.pid --beat \
+--logfile=<Your Log DIR>/celery-single.log "-l INFO"
+
+ExecStop=<Your Celery Location>/celery multi stopwait single-worker -n worker1@prod \
+--pidfile=<Your Project DIR>/celery-single.pid \
+--logfile=<Your Log DIR>/celery-single.log
+
+ExecReload=<Your Celery Location>/celery multi restart single-worker -n worker1@prod \
+--pidfile=<Your Project DIR>/celery-single.pid \
+--logfile=<Your Log DIR>/celery-single.log
+
+[Install]
+WantedBy=multi-user.target

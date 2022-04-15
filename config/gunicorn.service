@@ -1,0 +1,15 @@
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=<Your Project DIR>
+
+ExecStart=<Your virtualenv dir>/gunicorn --access-logfile <Your log dir>/access.log \
+--error-logfile <Your log dir>/error.log --log-level debug --workers 4 \
+--bind unix:<Your Project DIR>/healthchecker.sock conf.wsgi:application
+
+[Install]
+WantedBy=multi-user.target

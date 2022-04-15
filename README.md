@@ -1,5 +1,11 @@
 # Micro Service Health Checker
 
+## Prerequisites
+- Python
+- Django
+- Redis
+- PostgreSQL
+
 ### Dashboard UI screenshots
 ![Home Page](docs/screenshots/home.png)
 ![Login Page](docs/screenshots/login.png)
