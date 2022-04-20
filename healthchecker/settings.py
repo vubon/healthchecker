@@ -48,7 +48,6 @@ INSTALLED_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    'rest_framework',
     'django_celery_beat',
 ]
 
@@ -149,6 +148,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 CELERY_BROKER_URL = env("CELERY_BROKER_URL")
 CELERY_RESULT_BACKEND = env("CELERY_RESULT_BACKEND")

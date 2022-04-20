@@ -2,8 +2,10 @@
 
 # Start Gunicorn processes
 echo Starting Gunicorn.
-exec gunicorn manage:app \
+python manage.py migrate
+python manage.py collectstatic --no-input
+exec gunicorn healthchecker.wsgi:application \
       --name verifier \
-      --bind 0.0.0.0:5000 \
+      --bind 0.0.0.0:8000 \
       --workers 3 \
       --access-logfile - --error-logfile - --log-level debug
