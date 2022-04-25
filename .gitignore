@@ -13,6 +13,7 @@ test.sqlite3
 media
 .idea/*
 *.db
+.env-docker
 
 app_logs/*.log.*
 applibs/*.json
