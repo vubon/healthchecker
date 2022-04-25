@@ -13,11 +13,8 @@ test.sqlite3
 media
 .idea/*
 *.db
-.env-docker
+.env-*
 
-app_logs/*.log.*
-applibs/*.json
-applibs/firebase_test.py
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
 # in your Git repository. Update and uncomment the following line accordingly.
