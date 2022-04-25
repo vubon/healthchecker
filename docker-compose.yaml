@@ -10,6 +10,12 @@ services:
     networks:
       - backend
 
+  redis:
+    image: redis
+    restart: unless-stopped
+    networks:
+      - backend
+
   app:
     container_name: heathchecker
     build:
@@ -20,12 +26,7 @@ services:
     restart: unless-stopped
     depends_on:
       - db
-    networks:
-      - backend
-
-  redis:
-    image: redis
-    restart: unless-stopped
+      - redis
     networks:
       - backend
 
