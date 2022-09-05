@@ -1,4 +1,4 @@
-$('.nav li a').click(function (e) {
+$('.nav li a').click(function () {
     localStorage.setItem('active-menu-item', $(this).attr("href"));
 });
 
