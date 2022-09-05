@@ -3,7 +3,7 @@ FROM python:3.9.10-slim-buster
 # Skip the configuration part
 ENV DEBIAN_FRONTEND noninteractive
 ENV PYTHONUNBUFFERED 1
-RUN apt-get update && apt-get -y install libpq-dev gcc && apt-get clean 
+RUN apt-get update && apt-get -y install libpq-dev gcc && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # MAINTAINER vubon.roy@gmail.com
 
