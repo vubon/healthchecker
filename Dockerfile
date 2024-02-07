@@ -1,4 +1,4 @@
-FROM python:3.9.10-slim-buster
+FROM python:3.11.7-slim
 
 # Skip the configuration part
 ENV DEBIAN_FRONTEND noninteractive
